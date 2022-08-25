@@ -36,18 +36,34 @@ SELECT *
 FROM order_items
 WHERE order_id = '8272b63d03f5f79c56e9e4120aec44ef';
 
--- Calculate descriptive statistics of sales per month.
-SELECT to_char(order_purchase_timestamp, 'YYYY-MM') AS date,
-       SUM(price) AS total_sales,
+-- Calculate descriptive statistics of sales per state per month.
+SELECT customer_state AS state,
+       to_char(order_purchase_timestamp, 'YYYY-MM') AS date,
+       FLOOR(SUM(price)) AS total_sales,
        COUNT(order_id) AS total_transactions,
-       percentile_cont(0.25) within group (order by price) AS q25th,
-       percentile_cont(0.5) within group (order by price) AS median,
-       ROUND(CAST(AVG(price) AS numeric),2) AS avg_price,
-       percentile_cont(0.75) within group (order by price) AS q75th,
-       MIN(price),
-       MAX(price)
+       ROUND(CAST(percentile_cont(0.25) within group (order by price) AS numeric),0) AS q25th,
+       ROUND(CAST(percentile_cont(0.5) within group (order by price) AS numeric) ,0) AS median,
+       ROUND(CAST(AVG(price) AS numeric),0) AS avg_price,
+       ROUND(CAST(percentile_cont(0.75) within group (order by price) AS numeric),0) AS q75th,
+       ROUND(CAST(MIN(price) AS numeric),0) AS min_price,
+       ROUND(CAST(MAX(price) AS numeric),0) AS max_price
 FROM order_items
 LEFT JOIN orders
 USING(order_id)
-GROUP BY date
-ORDER BY date;
+LEFT JOIN customers
+USING(customer_id)
+GROUP BY state, date
+ORDER BY state, date;
+
+-- Show day of the week in which the order was made alongside with the hour
+-- With the porpuse of determine which is the most active purchase hour and day
+SELECT customer_state AS state,
+       to_char(order_purchase_timestamp, 'YYYY-MM') AS date,
+       to_char(order_purchase_timestamp, 'Day') AS day,
+       to_char(order_purchase_timestamp, 'HH24') AS hour
+FROM order_items
+LEFT JOIN orders
+USING(order_id)
+LEFT JOIN customers
+USING(customer_id);
+
