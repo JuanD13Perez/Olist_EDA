@@ -67,3 +67,18 @@ USING(order_id)
 LEFT JOIN customers
 USING(customer_id);
 
+
+-- Auxiliar Dataset with Timestamp information and continuos variables
+SELECT o.order_purchase_timestamp AS timestamp,
+    oi.price AS price,
+    oi.freight_value AS freight,
+    p.product_weight_g AS weight
+FROM orders AS o
+LEFT JOIN order_items AS oi
+USING(order_id)
+LEFT JOIN products AS p
+USING(product_id)
+WHERE to_char(o.order_purchase_timestamp, 'YYYY') = '2017'
+ORDER BY timestamp;
+
+
