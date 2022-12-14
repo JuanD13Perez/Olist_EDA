@@ -5,22 +5,21 @@
 
 ## English Version
 
-## Data load
-
-### Work in progress
-So far this project only contains the data structure associated with the Olist public dataset. We use the public schema available on Kaggle. All the work here it's done with POSTGRESQL via PgAdmin4. 
-Some queries were added for data visualization purposes. See [tableau](https://public.tableau.com/app/profile/juan.diego.p.rez.sierra/viz/Olist-EDASalesperformanceV1/Dashboard2?publish=yes) For a preliminary version of the dashboard.
-
-Here are some references that I used for inspiration:
- 1. [Dashboard design by Jialiang Sun](https://public.tableau.com/app/profile/jialiang.sun/viz/OLIST/OLISTstory)
- 2. [Data storytelling by Marien Abeli](https://public.tableau.com/app/profile/marien.abeli/viz/Olist_16207865690910/Story1)
- 3. [Relational schema](https://github.com/thuynh323/SQL-olist-e-commerce)
- 4. [EDA Ideas by Thiago Panini](https://www.kaggle.com/code/thiagopanini/e-commerce-sentiment-analysis-eda-viz-nlp)
-
-
 ## Spanish Version
 
-Este proyecto contiene Dashboards interactivos para ver datos de ventas, precios, información geográfica, reviews para el período 2016-2018 del portal de comercio eléctronico brasileño O-List. Datos disponibles vía [**Kaggle OLIST**](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce). Una base de datos se consturyó en PostGreSQL para alamacenar la información junto con información adicional de los schemas.
+Este proyecto contiene dashboards interactivos con datos del E-commerce brasileño OLIST.
+
+El objetivo del proyecto es construir visualizaciones a partir de datos sobre ventas, precios, geolocalización, tiempos de entrega de productos y volumen agrupados por estado, temporalidad y categorías. Las visualizaciones apoyan la toma de decisiones de posibles stakeholders (por ej. sales manager, marketing manager, etc.).
+
+### [Tableau Dashborad](https://public.tableau.com/app/profile/juan.diego.p.rez.sierra/viz/Olist-EDASalesperformanceV1/Dashboard2?publish=yes)
+
+![Tableau Banner](Images/Tableau_banner.png)
+
+
+**Requerimientos**
+* Descargar los datos disponibles vía [**Kaggle OLIST**](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) y guardarlos en la carpeta data en el mismo folder del repositorio (dicha carpeta es después ignorada en el gitignore debido a su tamaño, de manera que no es visible en GitHub).
+* Construimos la base de datos en PostgreSQL 14 utilizando Pgadmin4 como IDE.
+
 
 Puede ver los resultados de visualización finales en [Tableau](https://public.tableau.com/app/profile/juan.diego.p.rez.sierra/viz/Olist-EDASalesperformanceV1/Dashboard2?publish=yes)
 
